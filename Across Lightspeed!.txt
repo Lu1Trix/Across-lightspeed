@@ -1,0 +1,32 @@
+Across Lightspeed!
+
+Space racing game developed by Lui. Ardila & Ric. Portnoy 
+
+Across Lightspeed es un videojuego de carreras con elementos de plataformeo en el espacio.
+
+La humanidad esta en una nueva era de avances tecnologicos y como conductor experto seras el encargado de probar los limites de los nuevos Z-Travellers en una carrera!
+
+Tu principal regla: ¡NO  
+			     TOCAR
+				    LA  
+					 VELOCIDAD  
+						     DE  
+							 LA
+							   LUZ!
+
+
+La escencia del juego se basa en un juego de carreras en el espacio en donde hay dos mecanicas fundamentales:
+  
+ /* Tu vehiculo tiene vida, chocarte y ACELERAR reducen la vida de tu vehiculo provocandote a ser vulnerable ante otros competidores.
+ /* ¡Alcanzar la velocidad luz esta prohibido! Sí lo haces tu auto PODRIA perder toda su vida o darte una pequeña ayuda, pero tampoco puedes quedarte quieto porque el reactor de tu vehiculo, al no consumir su energia, tambien perdera su vida.
+
+La clave en este juego no es ganar la carrera (Eso es opcional) sino mantener el equilibrio de tu velocidad para mantener tu auto vivo.
+
+VISTA: 
+*Vista en tercera persona
+
+FISICAS:
+*Gravedad: El Auto podra saltar y así superar obstaculos; se necesita un sistema de gravedad el cual variara dependiendo el nivel, al ser  una carrera en el espacio.
+*Aceleracion: El Auto debera de acelerar o desacelerar dependiendo el caso y la friccion del nivel.
+*Colisiones: En caso de que el Auto choque tu barra de vida se vera perjudicada.
+
