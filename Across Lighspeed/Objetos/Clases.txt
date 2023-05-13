@@ -1,0 +1,23 @@
+1- Personaje ------------------------------------------------------------------------> - Int Vida (Int GetVida) (Void SetVida)
+		                               					       - Int Velocidad (Int GetVelocidad) (Void SetVelocidad)
+1.2- Enemigos ----> - Void MoverEnemigo 				               - Int Aceleración (Int GetAceleración) (Void SetAceleración)
+		    - Int Dificultad (Int GetDificultad) (Void SetDificultad)	       - Int Fricción (Int GetFricción) (Void SetFricción)
+						       				       - Int Distancia de salto (Int GetDistancia de salto) (Void SetDistancia de salto)
+										       - Hitbox
+										       - Sprite
+					     					       - Void MostrarSprite
+
+
+2- Juego     ------------------------------------------------------------------------> - Vector <Enemigos> PosicionEnemigos (Int GetPosicionEnemigos)(Void                                                                                                                                            SetPosicionEnemigos)
+										       - Int GravedadPlaneta 
+										       - Personaje Usuario 
+										       - Vector <Fondos> Niveles
+										       - Void KeyPressEvent(QKeyEvent *Evento)
+										       - Void Terminado(Int Posición)
+										       
+
+3- Fondo     ------------------------------------------------------------------------> - QPixmap Fondo (QPixmap GetFondo) (Void SetFondo)
+										       - Void Transformar
+ 										       - Void Actualizar
+										       - Vector <Personaje> PosiciónJugador (Vector GetPosiciónJugador) (Void                                              													SetPosiciónJugador)
+										       - Vector <Int> PosiciónLineaDeMeta (Vector GetPosiciónLineaDeMeta) (Void Set 																			LineaDeMeta)
