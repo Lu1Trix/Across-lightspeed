@@ -11,11 +11,14 @@
 #include <QKeyEvent>
 #include <QTimer>
 #include <QGraphicsScene>
+#include <limits>
 
-const int SCREEN_WIDTH = 1080;
-const int SCREEN_HEIGHT = 720;
-const int FOCAL_LEN = 250;
-const int SCALE = 25;
+const int screen_size_x = 800;
+const int screen_size_y = 600;
+
+const int screen_half_x = screen_size_x / 2;
+const int screen_half_y = screen_size_y / 2;
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,11 +48,17 @@ private:
     bool moverUy1;
     bool moverDy1;
 
-    float angle = 0;
-    float movement = 0;
+    int MAP_WIDTH = 500;
+    int MAP_HEIGHT = 400;
 
-    int MAP_WIDTH = 1600;
-    int MAP_HEIGHT = 900;
+    int world_scale = 30;
+    bool tiled_flag = false;
+
+    float camera_x_pos = 0;
+    float camera_z_pos = 0;
+    float camera_angle = 0;
+    int camera_movement_speed = 10;
+    float camera_rotation_speed = 0.1;
 
     QGraphicsScene *Scene;
 
