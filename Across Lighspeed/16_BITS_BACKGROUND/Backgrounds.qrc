@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Fondos">
+        <file>F-ZeroMap02BigBlue.jpg</file>
+        <file>SuperMarioKartMapMushroomCup1.jpg</file>
+    </qresource>
+</RCC>
