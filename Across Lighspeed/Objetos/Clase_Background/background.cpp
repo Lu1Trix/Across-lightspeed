@@ -7,10 +7,24 @@ background::background(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_mapImage->load(":/Fondos/F-ZeroMap02BigBlue.jpg");
+    Scene = new QGraphicsScene(0,0,screen_size_x, screen_size_y);
 
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing, false);
+    ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform, false);
+
+    ui->centralwidget->layout()->setContentsMargins(0,0,0,0);
+
+    ui->graphicsView->setScene(Scene);
+
+    m_mapImage->load(":/backgrounds/F-ZeroMap02BigBlue.jpg");
     MAP_WIDTH = m_mapImage->width();
     MAP_HEIGHT = m_mapImage->height();
+
+    m_backImage->load(":/backgrounds/R.png");
+    *m_backImage = m_backImage->scaled(screen_size_x, screen_half_y);
+    BACK_WIDTH = m_backImage->width();
+    BACK_HEIGHT = m_backImage->height();
+
     setFixedSize(screen_size_x, screen_size_y);
 
     moverIx1=false;
@@ -18,46 +32,47 @@ background::background(QWidget *parent)
     moverUy1=false;
     moverDy1=false;
 
-    ui->graphicsView->show();
-
-    Scene = new QGraphicsScene(0,0,screen_size_x, screen_size_y);
-
-    ui->graphicsView->setScene(Scene);
-
     m_time=new QTimer();
-
     connect(m_time,SIGNAL(timeout()),this,SLOT(animar()));
+    m_time->start(0.025);
 
-    m_time->start(50);
 }
 
 background::~background()
 {
+    delete m_mapImage;
+    delete m_backImage;
     delete ui;
 }
+
 void background::actualizar()
 {
-    float _X;
-    float _Y;
-    float _Z;
-    float _S;
-    float _C;
-    float rx;
-    float ry;
-    float px;
-    float py;
-    bool flag;
-    int tx;
-    int ty;
+    QImage *Default = new QImage(screen_size_x, screen_size_y, (QImage::Format_RGB16));
 
-    QImage Default(screen_size_x, screen_size_y, (QImage::Format_RGB32));
+    //QPainter painter(this);
+
+    // Calculate the angle
+
+    //painter.setRenderHint(QPainter::Antialiasing, false);
+    //painter.setRenderHint(QPainter::SmoothPixmapTransform, false);
+    //painter.setCompositionMode(QPainter::CompositionMode_Source);
+
+    float _X; float _Y; float _Z;   //Posicion en el espacio
+    float _S; float _C;             //Valores seno y coseno del angulo
+    float rx; float ry;             //Posición respecto al angulo
+    float px; float py;             //Transformación lineal
+    int tx; int ty;                 //Conversión a enteros
+
+    bool flag;
+    QColor *color = new QColor;
+
 
     for (int y = screen_half_y; y < screen_size_y; ++y)
     {
         for (int x = 0; x < screen_size_x; ++x)
         {
             _X = x - screen_half_x;
-            _Y = y + 250;
+            _Y = y + 300;
             _Z = y - screen_half_y;
 
             if (_Z == 0.0) _Z = 1.0;
@@ -101,56 +116,66 @@ void background::actualizar()
             if (flag == false)
             {
                 ty = MAP_HEIGHT - 1 - ty;
-                QColor color = m_mapImage->pixelColor(tx, ty);
-                Default.setPixelColor(x, y, color);
+                *color = m_mapImage->pixelColor(tx, ty);
+                Default->setPixelColor(x, y, *color);
             }
             else
             {
-                QColor color(0,0,0);
-                Default.setPixelColor(x, y, color);
+                *color = qRgb(0,0,0);
+                Default->setPixelColor(x, y, *color);
             }
+            px = fmod(abs(x), BACK_WIDTH);
+            py = fmod(screen_size_y-y , BACK_HEIGHT);
+            *color = m_backImage->pixelColor(px, py);
+            Default->setPixelColor(x, screen_size_y - y, *color);
         }
     }
-
-
-    ui->graphicsView->setBackgroundBrush(QBrush(Default));
+    ui->graphicsView->setBackgroundBrush(QBrush(*Default));
 }
-
 void background::animar()
 {
     float _S = sinf(camera_angle);
     float _C = cosf(camera_angle);
-    float M_X = (0.0 * _C) + (1.0 * _S);
-    float M_Z = (0.0 * -_S) + (1.0 * _C);
-
-    M_X = M_X + camera_movement_speed;
-    M_Z = M_Z + camera_movement_speed;
 
 
+    if (moverUy1 && moverDx1)
+    {
+        camera_angle = camera_angle + camera_rotation_speed;
+        camera_z_pos = camera_z_pos + _C*camera_movement_speed;
+        camera_x_pos = camera_x_pos + _S*camera_movement_speed;
+        this->actualizar();
 
-    if(moverIx1)
+    }
+    else if(moverUy1 && moverIx1)
     {
         camera_angle = camera_angle - camera_rotation_speed;
-
+        camera_z_pos = camera_z_pos + _C*camera_movement_speed;
+        camera_x_pos = camera_x_pos + _S*camera_movement_speed;
         this->actualizar();
     }
-    if(moverDx1)
+    else if(moverIx1)
+    {
+        camera_angle = camera_angle - camera_rotation_speed;
+        this->actualizar();
+    }
+    else if (moverDx1)
     {
         camera_angle = camera_angle + camera_rotation_speed;
         this->actualizar();
     }
-    if(moverUy1)
+    else if(moverUy1)
     {
-        camera_z_pos = camera_z_pos + cosf(camera_angle)*camera_movement_speed;
-        camera_x_pos = camera_x_pos + sinf(camera_angle)*camera_movement_speed;
+        camera_z_pos = camera_z_pos + _C*camera_movement_speed;
+        camera_x_pos = camera_x_pos + _S*camera_movement_speed;
         this->actualizar();
     }
-    if(moverDy1)
+    else if(moverDy1)
     {
-        camera_z_pos = camera_z_pos - cosf(camera_angle);
-        camera_x_pos = camera_x_pos - sinf(camera_angle);
+        camera_z_pos = camera_z_pos - _C*camera_movement_speed;
+        camera_x_pos = camera_x_pos - _S*camera_movement_speed;
         this->actualizar();
     }
+
 }
 void background::keyPressEvent(QKeyEvent *ev)
 {

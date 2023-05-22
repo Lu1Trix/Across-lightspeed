@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/backgrounds">
+        <file>F-ZeroMap02BigBlue.jpg</file>
+        <file>R.png</file>
+    </qresource>
+</RCC>
