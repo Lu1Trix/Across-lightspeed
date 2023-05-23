@@ -9,11 +9,15 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    juego.cpp \
     main.cpp \
-    background.cpp
+    background.cpp \
+    sprites.cpp
 
 HEADERS += \
-    background.h
+    background.h \
+    juego.h \
+    sprites.h
 
 FORMS += \
     background.ui

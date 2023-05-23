@@ -7,6 +7,10 @@ background::background(QWidget *parent)
 {
     ui->setupUi(this);
 
+    juego = new Juego;
+    juego->setSceneRect(0,0,ui->graphicsView->width()-2,ui->graphicsView->height()-2);
+    ui->graphicsView->setScene(juego);
+
     Scene = new QGraphicsScene(0,0,screen_size_x, screen_size_y);
 
     ui->graphicsView->setRenderHint(QPainter::Antialiasing, false);

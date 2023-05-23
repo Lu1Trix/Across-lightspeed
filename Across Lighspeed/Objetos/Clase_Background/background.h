@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <cmath>
 #include <QGraphicsScene>
+#include "juego.h"
 
 const int screen_size_x = 612;
 const int screen_size_y = 612;
@@ -36,6 +37,8 @@ public slots:
 
 private:
     Ui::background *ui;
+
+    Juego *juego;
 
     QGraphicsScene *Scene; QTimer *m_time;
 
