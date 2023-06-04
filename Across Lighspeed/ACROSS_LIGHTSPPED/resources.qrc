@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/escenarios">
+        <file>F-ZeroMap01MuteCity1.jpg</file>
+        <file>F-ZeroMap02BigBlue.jpg</file>
+        <file>F-ZeroMap06MuteCity2.jpg</file>
+        <file>F-ZeroMap07PortTown1.jpg</file>
+        <file>F-ZeroMap15FireField.jpg</file>
+        <file>BigBlueNoBackG.png</file>
+    </qresource>
+    <qresource prefix="/sprites"/>
+</RCC>
