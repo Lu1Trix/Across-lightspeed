@@ -1,11 +1,15 @@
 <RCC>
     <qresource prefix="/escenarios">
-        <file>F-ZeroMap01MuteCity1.jpg</file>
-        <file>F-ZeroMap02BigBlue.jpg</file>
-        <file>F-ZeroMap06MuteCity2.jpg</file>
-        <file>F-ZeroMap07PortTown1.jpg</file>
-        <file>F-ZeroMap15FireField.jpg</file>
         <file>BigBlueNoBackG.png</file>
+        <file>FireFieldNoBackG.jpg</file>
+        <file>MuteCity1NoBackG.png</file>
+        <file>MuteCity2NoBackG.png</file>
     </qresource>
-    <qresource prefix="/sprites"/>
+    <qresource prefix="/sprites">
+        <file>Asteroide.png</file>
+        <file>Asteroide_rojo-removebg-preview.png</file>
+        <file>Estrella.png</file>
+        <file>Planeta_rosa-removebg-preview.png</file>
+        <file>Rayo-removebg-preview.png</file>
+    </qresource>
 </RCC>

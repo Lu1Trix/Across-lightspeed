@@ -1,5 +1,6 @@
 #include "game.h"
 #include "ui_game.h"
+#include "random"
 
 Game::Game(QWidget *parent)
     : QMainWindow(parent)
@@ -16,10 +17,16 @@ Game::Game(QWidget *parent)
     escenario->setCamera_x_pos(2411);
     escenario->setCamera_z_pos(3253);
 
+    estrella.setPicture(QPixmap(":/sprites/Estrella.png"));
+
+
     Scene = new QGraphicsScene(0, 0, escenario->getScreen_size_x() - 2, escenario->getScreen_size_y() - 2);
     setFixedSize(escenario->getScreen_size_x() + 20, escenario->getScreen_size_y() + 20);
     ui->graphicsView->setScene(Scene);
     ui->graphicsView->setBackgroundBrush(escenario->actualizar());
+
+    Scene->addItem(&estrella);
+    estrella.show();
 
     m_timer=new QTimer();
     connect(m_timer,SIGNAL(timeout()),this,SLOT(main_movement()));
