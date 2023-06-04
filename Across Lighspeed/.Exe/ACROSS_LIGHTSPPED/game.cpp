@@ -12,7 +12,9 @@ Game::Game(QWidget *parent)
     ui->graphicsView->setOptimizationFlag(QGraphicsView::DontAdjustForAntialiasing, true);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
-    escenario = new background(":/escenarios/F-ZeroMap06MuteCity2.jpg");
+    escenario = new background(":/escenarios/BigBlueNoBackG.png");
+    escenario->setCamera_x_pos(2411);
+    escenario->setCamera_z_pos(3253);
 
     Scene = new QGraphicsScene(0, 0, escenario->getScreen_size_x() - 2, escenario->getScreen_size_y() - 2);
     setFixedSize(escenario->getScreen_size_x() + 20, escenario->getScreen_size_y() + 20);
@@ -21,7 +23,9 @@ Game::Game(QWidget *parent)
 
     m_timer=new QTimer();
     connect(m_timer,SIGNAL(timeout()),this,SLOT(main_movement()));
-    m_timer->start(3);
+    m_timer->start(10);
+
+    Speed = 0;
 
 }
 
@@ -34,35 +38,38 @@ Game::~Game()
 
 void Game::main_movement()
 {
-    if (movement_Up && movement_Right)
-    {
-        escenario->Fowards();
-        escenario->turn_Right();
-    }
-    else if(movement_Up && movement_Left)
-    {
-        escenario->Fowards();
-        escenario->turn_Left();
-    }
-    else if(movement_Left)
+
+    if(movement_Left)
     {
         escenario->turn_Left();
-        escenario->Fowards();
     }
-    else if (movement_Right)
+    if (movement_Right)
     {
         escenario->turn_Right();
-        escenario->Fowards();
     }
-    else if(movement_Up)
+    if(movement_Up && Speed < 20)
     {
-        escenario->Fowards();
+        Speed += 0.2;
     }
-    else if(movement_Down)
+    else if(movement_Down && Speed > -10)
     {
-        escenario->Backwards();
+        Speed -= 0.2;
     }
+    else if (Speed != 0)
+    {
+        if (Speed > 0)
+        {
+             Speed -= 0.1;
+        }
+        else
+        {
+             Speed += 0.1;
+        }
+    }
+    escenario->setCamera_movement_speed(Speed);
+    escenario->Fowards();
     ui->graphicsView->setBackgroundBrush(escenario->actualizar());
+
 }
 
 void Game::keyPressEvent(QKeyEvent *ev)
@@ -105,31 +112,6 @@ void Game::keyReleaseEvent(QKeyEvent *ev)
     }
 }
 
-//float Game::Inercia(bool Momentun_status, float Speed)
-//{
-//    float NewSpeed;
-
-
-//    if (Momentun_status)
-//    {
-//        NewSpeed = Speed + 0.3;
-//    }
-//    else
-//    {
-//        NewSpeed = Speed - 0.3;
-//        if (NewSpeed < 0)
-//        {
-//            return 0;
-//        }
-//    }
-
-//    if (Speed > 40)
-//    {
-//        return 40;
-//    }
-
-//    return NewSpeed;
-//}
 
 
 

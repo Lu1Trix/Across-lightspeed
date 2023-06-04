@@ -10,25 +10,7 @@ background::background(QString map_direcction)
     m_mapImage->load(map_direcction);
     MAP_WIDTH = m_mapImage->width();
     MAP_HEIGHT = m_mapImage->height();
-
-    std::vector<std::vector<int>> Mat(MAP_WIDTH, std::vector<int>(MAP_HEIGHT));
-    QColor referencia(0,0,0,255);
-    m_map = Mat;
-
-    for(int C = 0; C < MAP_WIDTH; ++C)
-    {
-        for(int K = 0; K < MAP_HEIGHT; ++K)
-        {
-            if (referencia == m_mapImage->pixelColor(C , K))
-            {
-                m_map[C][K] = 1;
-            }
-            else
-            {
-                m_map[C][K] = 0;
-            }
-        }
-    }
+    referencia = m_mapImage->pixelColor(1000, 1000);
 }
 background::~background()
 {
@@ -100,6 +82,17 @@ void background::Cargar(QString m_map)
     m_mapImage->load(m_map);
     MAP_WIDTH = m_mapImage->width();
     MAP_HEIGHT = m_mapImage->height();
+    referencia = m_mapImage->pixelColor(1000, 1000);
+}
+
+QColor background::getReferencia() const
+{
+    return referencia;
+}
+
+void background::setReferencia(const QColor &newReferencia)
+{
+    referencia = newReferencia;
 }
 
 QBrush background::actualizar()
@@ -173,14 +166,39 @@ QBrush background::actualizar()
 
 void background::Fowards()
 {
-    camera_x_pos = camera_x_pos + sinf(camera_angle)*camera_movement_speed;
-    camera_z_pos = camera_z_pos + cosf(camera_angle)*camera_movement_speed;
+    int _X = round(camera_x_pos + sinf(camera_angle)*camera_movement_speed + sinf(camera_angle)*65);
+    int _Z = round(camera_z_pos + cosf(camera_angle)*camera_movement_speed + cosf(camera_angle)*65);
+
+
+    int _AUX = camera_x_pos;
+
+    if (m_mapImage->pixelColor(_X, MAP_HEIGHT-camera_z_pos)!= referencia)
+    {
+        camera_x_pos = camera_x_pos + sinf(camera_angle)*camera_movement_speed;
+    }
+    if (m_mapImage->pixelColor(_AUX,  MAP_HEIGHT-_Z) != referencia)
+    {
+        camera_z_pos = camera_z_pos + cosf(camera_angle)*camera_movement_speed;
+    }
 }
 
 void background::Backwards()
 {
-    camera_z_pos = camera_z_pos - cosf(camera_angle)*camera_movement_speed;
-    camera_x_pos = camera_x_pos - sinf(camera_angle)*camera_movement_speed;
+
+    int _X = round(camera_x_pos - sinf(camera_angle)*camera_movement_speed - sinf(camera_angle)*100);
+    int _Z = round(camera_z_pos - cosf(camera_angle)*camera_movement_speed - cosf(camera_angle)*100);
+
+    int _AUX = camera_x_pos;
+
+    if (m_mapImage->pixelColor(_X, MAP_HEIGHT-camera_z_pos) != referencia)
+    {
+        camera_x_pos = camera_x_pos - sinf(camera_angle)*camera_movement_speed;
+    }
+    if (m_mapImage->pixelColor(_AUX, MAP_HEIGHT-_Z) != referencia)
+    {
+        camera_z_pos = camera_z_pos - cosf(camera_angle)*camera_movement_speed;
+    }
+
 }
 
 void background::turn_Left()
@@ -190,6 +208,7 @@ void background::turn_Left()
 
 void background::turn_Right()
 {
+
     camera_angle = camera_angle + camera_rotation_speed;
 }
 

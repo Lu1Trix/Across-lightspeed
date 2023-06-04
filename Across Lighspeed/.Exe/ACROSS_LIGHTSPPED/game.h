@@ -37,10 +37,10 @@ private:
     bool movement_Right = false;
     bool increased_Spedd = false;
 
+    float Speed;
+
     QGraphicsScene *Scene;
 
-//public:
-//    float Inercia(bool Momentun_status, float Speed);
 
 };
 

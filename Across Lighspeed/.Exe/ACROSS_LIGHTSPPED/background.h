@@ -45,17 +45,20 @@ public:
     void Cargar(QString m_map);
 
 
+    QColor getReferencia() const;
+    void setReferencia(const QColor &newReferencia);
+
 private:
     int MAP_WIDTH;
     int MAP_HEIGHT;
 
-    int world_scale = 40;
+    int world_scale = 25;
 
     float camera_movement_speed = 15;
     float camera_rotation_speed = 0.085;
 
-    float camera_x_pos = 2500;
-    float camera_z_pos = 2000;
+    float camera_x_pos = 3396;
+    float camera_z_pos = 331;
     float camera_angle = 0;
 
     int screen_size_x = 800;
@@ -66,7 +69,7 @@ private:
 
     bool tiled_flag = false;
 
-    std::vector <std::vector <int>> m_map;
+    QColor referencia;
 
     QImage *m_mapImage = new QImage(QImage(MAP_WIDTH, MAP_HEIGHT, QImage::Format_RGB16));
     QImage *Default = new QImage(screen_size_x, screen_size_y, (QImage::Format_RGB16));
