@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/escenarios">
+        <file>BigBlueNoBackG.png</file>
+        <file>FireFieldNoBackG.jpg</file>
+        <file>MuteCity1NoBackG.png</file>
+        <file>MuteCity2NoBackG.png</file>
+        <file>PortTown1NoBackG.png</file>
+    </qresource>
+    <qresource prefix="/Music">
+        <file>Guilty-Gear-Mays-Theme-Blue-Water-Blue-Sky.wav</file>
+        <file>Presentacion.wav</file>
+    </qresource>
+    <qresource prefix="/naves">
+        <file>AcelerandoNaveAmarilla.png</file>
+        <file>AcelerandoNaveAzul.png</file>
+        <file>AcelerandoNaveMorada</file>
+        <file>AcelerandoNaveRoja.png</file>
+        <file>ImInicio.jpeg</file>
+        <file>NaveAmarilla.png</file>
+        <file>NaveAzul.png</file>
+        <file>NaveMorada.jpg</file>
+        <file>NaveMorada.png</file>
+        <file>NaveRoja.png</file>
+        <file>Pilar.png</file>
+        <file>Selecciona_tu_personaje.png</file>
+    </qresource>
+    <qresource prefix="/Selectores">
+        <file>SelectorMundos.png</file>
+        <file>SelectorNaves.png</file>
+    </qresource>
+</RCC>

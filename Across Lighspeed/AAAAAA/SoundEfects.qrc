@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Sonidos">
+        <file>Guilty-Gear-X-A-Daredevil.wav</file>
+        <file>Guilty-Gear-X-Go_.wav</file>
+    </qresource>
+</RCC>

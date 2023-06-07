@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/MusicaSabrosa">
+        <file>F-Zero-X-OST-Dream-Chaser.wav</file>
+        <file>F-Zero-X-OST-Drivin-Through-on-Max.wav</file>
+        <file>F-Zero-X-OST-Goal-Fanfare.wav</file>
+        <file>Guilty-Gear-X-Advance-Edition-OST-It-Was-Called-Victim.wav</file>
+    </qresource>
+</RCC>
