@@ -1,3 +1,4 @@
+
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
@@ -6,16 +7,17 @@
 #include <QGraphicsScene>
 #include <cmath>
 #include <vector>
+#include <QProgressBar>
 
 class background
 {
 public:
     background();
-    background(QString map_direcction);
+    background(QString map_direcction, int X, int Y);
     ~background();
     QBrush actualizar();
 
-    void Fowards();
+    void Fowards(QProgressBar *vida);
     void Backwards();
     void turn_Left();
     void turn_Right();
@@ -59,7 +61,7 @@ private:
 
     float camera_x_pos = 3396;
     float camera_z_pos = 331;
-    float camera_angle = 0;
+    float camera_angle = 90;
 
     int screen_size_x = 800;
     int screen_size_y = 600;

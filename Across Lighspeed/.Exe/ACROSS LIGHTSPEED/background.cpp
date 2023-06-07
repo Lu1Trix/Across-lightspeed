@@ -1,16 +1,13 @@
+
 #include "background.h"
 
-background::background()
-{
-
-}
-
-background::background(QString map_direcction)
+background::background(QString map_direcction, int X, int Y)
 {
     m_mapImage->load(map_direcction);
     MAP_WIDTH = m_mapImage->width();
     MAP_HEIGHT = m_mapImage->height();
-    referencia = m_mapImage->pixelColor(1000, 1000);
+    referencia = m_mapImage->pixelColor(X, Y);
+
 }
 background::~background()
 {
@@ -164,10 +161,10 @@ QBrush background::actualizar()
 
 }
 
-void background::Fowards()
+void background::Fowards(QProgressBar* vida)
 {
-    int _X = round(camera_x_pos + sinf(camera_angle)*camera_movement_speed + sinf(camera_angle)*65);
-    int _Z = round(camera_z_pos + cosf(camera_angle)*camera_movement_speed + cosf(camera_angle)*65);
+    int _X = round(camera_x_pos + sinf(camera_angle)*camera_movement_speed + sinf(camera_angle)*50);
+    int _Z = round(camera_z_pos + cosf(camera_angle)*camera_movement_speed + cosf(camera_angle)*50);
 
 
     int _AUX = camera_x_pos;
@@ -176,9 +173,20 @@ void background::Fowards()
     {
         camera_x_pos = camera_x_pos + sinf(camera_angle)*camera_movement_speed;
     }
+    else
+    {
+        camera_x_pos = camera_x_pos - sinf(camera_angle)*camera_movement_speed;
+        vida->setValue(vida->value()-0.5*camera_movement_speed);
+    }
+
     if (m_mapImage->pixelColor(_AUX,  MAP_HEIGHT-_Z) != referencia)
     {
         camera_z_pos = camera_z_pos + cosf(camera_angle)*camera_movement_speed;
+    }
+    else
+    {
+        camera_z_pos = camera_z_pos - cosf(camera_angle)*camera_movement_speed;
+        vida->setValue(vida->value()-0.5*camera_movement_speed);
     }
 }
 
@@ -211,4 +219,3 @@ void background::turn_Right()
 
     camera_angle = camera_angle + camera_rotation_speed;
 }
-

@@ -10,17 +10,29 @@ CONFIG += c++17
 
 SOURCES += \
     background.cpp \
-    character.cpp \
+    game.cpp \
+    gameover.cpp \
+    inicio.cpp \
     main.cpp \
-    game.cpp
+    selector.cpp \
+    selectormundos.cpp \
+    sprites.cpp
 
 HEADERS += \
     background.h \
-    character.h \
-    game.h
+    game.h \
+    gameover.h \
+    inicio.h \
+    selector.h \
+    selectormundos.h \
+    sprites.h
 
 FORMS += \
-    game.ui
+    game.ui \
+    gameover.ui \
+    inicio.ui \
+    selector.ui \
+    selectormundos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -28,4 +40,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resources.qrc
+    Naves.qrc

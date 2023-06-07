@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/naves">
+        <file>NaveAzul.png</file>
+        <file>NaveRoja.png</file>
+        <file>NaveAmarilla.png</file>
+        <file>NaveMorada.png</file>
+        <file>Pilar.png</file>
+        <file>Selecciona_tu_personaje.png</file>
+        <file>ImInicio.jpeg</file>
+        <file>AcelerandoNaveMorada</file>
+        <file>AcelerandoNaveAzul.png</file>
+        <file>AcelerandoNaveAmarilla.png</file>
+        <file>AcelerandoNaveRoja.png</file>
+    </qresource>
+    <qresource prefix="/escenarios">
+        <file>FireFieldNoBackG.jpg</file>
+        <file>MuteCity1NoBackG.png</file>
+        <file>MuteCity2NoBackG.png</file>
+        <file>BigBlueNoBackG.png</file>
+        <file>P1.png</file>
+        <file>FireField.jpg</file>
+        <file>MuteCity1.png</file>
+        <file>MuteCity2.png</file>
+        <file>PortTown1.png</file>
+        <file>PortTown1NoBackGc.png</file>
+    </qresource>
+    <qresource prefix="/Selectores">
+        <file>Selector_Mundo.png</file>
+        <file>Selector_Naves.png</file>
+        <file>Game_Over_con_fondo.png</file>
+        <file>Time_over_con_estrellas.png</file>
+        <file>Trophy.jpg</file>
+    </qresource>
+</RCC>
